@@ -9,6 +9,6 @@ class Mastermind(val firstColor: Int,
                   secondColorGuess: Int,
                   thirdColorGuess: Int,
                   fourthColorGuess: Int): Int {
-        return 1 - firstColorGuess;
+        return Math.max(1 - firstColorGuess, 1 - secondColorGuess);
     }
 }

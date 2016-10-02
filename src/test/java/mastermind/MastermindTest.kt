@@ -6,16 +6,17 @@ import org.junit.Test
 class MastermindTest {
     @Test
     fun shouldCreateMastermind() {
-        Assert.assertNotNull(Mastermind(0,0,0,0))
+        Assert.assertNotNull(Mastermind(0, 0, 0, 0))
     }
 
     @Test
     fun shouldReturnZeroMatchesForTheWorstPossibleGuessCorrectly() {
-        Assert.assertEquals(0, Mastermind(0,0,0,0).findMatch(1,1,1,1))
+        Assert.assertEquals(0, Mastermind(0, 0, 0, 0).findMatch(1, 1, 1, 1))
     }
 
     @Test
     fun shouldReturnOneMatchForOneCorrectColorGuess() {
-        Assert.assertEquals(1, Mastermind(0,0,0,0).findMatch(0,1,1,1))
+        Assert.assertEquals(1, Mastermind(0, 0, 0, 0).findMatch(0, 1, 1, 1))
+        Assert.assertEquals(1, Mastermind(0, 0, 0, 0).findMatch(1, 0, 1, 1))
     }
 }
