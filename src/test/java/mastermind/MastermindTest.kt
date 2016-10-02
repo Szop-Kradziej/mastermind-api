@@ -6,6 +6,6 @@ import org.junit.Test
 class MastermindTest {
     @Test
     fun shouldCreateMastermind() {
-        Assert.assertNotNull(Mastermind())
+        Assert.assertNotNull(Mastermind(0,0,0,0))
     }
 }
