@@ -5,7 +5,10 @@ class Mastermind(val firstColor: Int,
                  val thirdColor: Int,
                  val fourthColor: Int) {
 
-    fun  findMatch(i: Int, i1: Int, i2: Int, i3: Int): Int {
-        return 0;
+    fun findMatch(firstColorGuess: Int,
+                  secondColorGuess: Int,
+                  thirdColorGuess: Int,
+                  fourthColorGuess: Int): Int {
+        return 1 - firstColorGuess;
     }
 }
