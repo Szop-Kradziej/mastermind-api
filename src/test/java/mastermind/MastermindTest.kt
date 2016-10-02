@@ -18,5 +18,7 @@ class MastermindTest {
     fun shouldReturnOneMatchForOneCorrectColorGuess() {
         Assert.assertEquals(1, Mastermind(0, 0, 0, 0).findMatch(0, 1, 1, 1))
         Assert.assertEquals(1, Mastermind(0, 0, 0, 0).findMatch(1, 0, 1, 1))
+        Assert.assertEquals(1, Mastermind(0, 0, 0, 0).findMatch(1, 1, 0, 1))
+        Assert.assertEquals(1, Mastermind(0, 0, 0, 0).findMatch(1, 1, 1, 0))
     }
 }
