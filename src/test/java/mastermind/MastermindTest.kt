@@ -12,6 +12,7 @@ class MastermindTest {
     @Test
     fun shouldReturnZeroMatchesForTheWorstPossibleGuessCorrectly() {
         Assert.assertEquals(0, Mastermind(0, 0, 0, 0).findMatch(1, 1, 1, 1))
+        Assert.assertEquals(0, Mastermind(1, 1, 1, 1).findMatch(0, 0, 0, 0))
     }
 
     @Test

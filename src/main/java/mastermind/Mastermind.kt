@@ -9,6 +9,9 @@ class Mastermind(val firstColor: Int,
                   secondColorGuess: Int,
                   thirdColorGuess: Int,
                   fourthColorGuess: Int): Int {
-        return listOf(1 - firstColorGuess, 1 - secondColorGuess, 1 - thirdColorGuess, 1 - fourthColorGuess).max()!!
+        return listOf(firstColor == firstColorGuess,
+                secondColor == secondColorGuess,
+                thirdColor == thirdColorGuess,
+                fourthColor == fourthColorGuess).count { it == true }
     }
 }
