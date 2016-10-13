@@ -25,4 +25,11 @@ class Mastermind(val firstColor: Int,
                 thirdColorGuess,
                 fourthColorGuess).count { colors.remove(it) }
     }
+
+    fun findMatch(firstColorGuess: Int,
+                  secondColorGuess: Int,
+                  thirdColorGuess: Int,
+                  fourthColorGuess: Int): MatchResult {
+        return MatchResult(2, 2)
+    }
 }

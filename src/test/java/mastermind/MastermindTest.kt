@@ -39,4 +39,10 @@ class MastermindTest {
         Assert.assertEquals(1, Mastermind(1, 1, 0, 1).findColorMatch(2, 2, 2, 0))
         Assert.assertEquals(1, Mastermind(0, 0, 0, 1).findColorMatch(2, 1, 2, 1))
     }
+
+    @Test
+    fun shouldReturnConcreteStructureAsMatchResult() {
+        Assert.assertEquals(MatchResult(2, 2), Mastermind(0,0,1,1).findMatch(0,1,0,1))
+    }
 }
+
