@@ -4,10 +4,6 @@ import org.junit.Assert
 import org.junit.Test
 
 class MastermindTest {
-    @Test
-    fun shouldCreateMastermind() {
-        Assert.assertNotNull(Mastermind(0, 0, 0, 0))
-    }
 
     @Test
     fun shouldReturnZeroMatchesForTheWorstPossibleGuessCorrectly() {
@@ -53,7 +49,7 @@ class MastermindTest {
                                 secondColorGuess: Int,
                                 thirdColorGuess: Int,
                                 fourthColorGuess: Int): MatchResult {
-        return Mastermind(firstColor, secondColor, thirdColor, fourthColor)
+        return Mastermind(ColorSet(firstColor, secondColor, thirdColor, fourthColor))
                 .findMatch(firstColorGuess, secondColorGuess, thirdColorGuess, fourthColorGuess)
     }
 }

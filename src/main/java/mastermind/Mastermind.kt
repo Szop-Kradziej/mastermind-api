@@ -1,9 +1,6 @@
 package mastermind
 
-class Mastermind(val firstColor: Int,
-                 val secondColor: Int,
-                 val thirdColor: Int,
-                 val fourthColor: Int) {
+class Mastermind(val colorSet: ColorSet) {
 
     fun findMatch(firstColorGuess: Int,
                   secondColorGuess: Int,
@@ -18,17 +15,17 @@ class Mastermind(val firstColor: Int,
                           secondColorGuess: Int,
                           thirdColorGuess: Int,
                           fourthColorGuess: Int): Int {
-        return listOf(firstColor == firstColorGuess,
-                secondColor == secondColorGuess,
-                thirdColor == thirdColorGuess,
-                fourthColor == fourthColorGuess).count { it == true }
+        return listOf(colorSet.first == firstColorGuess,
+                colorSet.second == secondColorGuess,
+                colorSet.third == thirdColorGuess,
+                colorSet.fourth == fourthColorGuess).count { it == true }
     }
 
     private fun findColorMatch(firstColorGuess: Int,
                        secondColorGuess: Int,
                        thirdColorGuess: Int,
                        fourthColorGuess: Int): Int {
-        val colors = listOf(firstColor, secondColor, thirdColor, fourthColor).toMutableList()
+        val colors = colorSet.toList().toMutableList()
         return listOf(firstColorGuess,
                 secondColorGuess,
                 thirdColorGuess,
