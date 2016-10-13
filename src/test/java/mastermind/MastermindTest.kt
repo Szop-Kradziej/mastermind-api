@@ -37,5 +37,6 @@ class MastermindTest {
         Assert.assertEquals(1, Mastermind(0, 0, 1, 0).findColorMatch(1, 2, 2, 2))
         Assert.assertEquals(2, Mastermind(0, 0, 1, 1).findColorMatch(2, 1, 2, 1))
         Assert.assertEquals(1, Mastermind(1, 1, 0, 1).findColorMatch(2, 2, 2, 0))
+        Assert.assertEquals(1, Mastermind(0, 0, 0, 1).findColorMatch(2, 1, 2, 1))
     }
 }
