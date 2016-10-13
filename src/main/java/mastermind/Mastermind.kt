@@ -19,9 +19,10 @@ class Mastermind(val firstColor: Int,
                        secondColorGuess: Int,
                        thirdColorGuess: Int,
                        fourthColorGuess: Int): Int {
+        val colors = listOf(firstColor, secondColor, thirdColor, fourthColor)
         return listOf(firstColorGuess,
                 secondColorGuess,
                 thirdColorGuess,
-                fourthColorGuess).count { it == 1 }
+                fourthColorGuess).count { colors.contains(it) }
     }
 }
