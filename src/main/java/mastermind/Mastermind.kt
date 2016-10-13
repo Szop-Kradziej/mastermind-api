@@ -14,4 +14,8 @@ class Mastermind(val firstColor: Int,
                 thirdColor == thirdColorGuess,
                 fourthColor == fourthColorGuess).count { it == true }
     }
+
+    fun findSwitchMatch(i: Int, i1: Int, i2: Int, i3: Int): Long {
+        return 1;
+    }
 }

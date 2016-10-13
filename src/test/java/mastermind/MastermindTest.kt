@@ -31,4 +31,9 @@ class MastermindTest {
     fun shouldReturnPerfectMatchCorrectly() {
         Assert.assertEquals(4, Mastermind(1, 2, 3, 4).findMatch(1, 2, 3, 4))
     }
+
+    @Test
+    fun shouldReturnSwitchPlacesMatchCorrectly() {
+        Assert.assertEquals(1, Mastermind(0, 0, 1, 0).findSwitchMatch(1, 2, 2, 2))
+    }
 }
