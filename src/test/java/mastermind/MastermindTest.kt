@@ -35,5 +35,6 @@ class MastermindTest {
     @Test
     fun shouldReturnColorMatchCorrectly() {
         Assert.assertEquals(1, Mastermind(0, 0, 1, 0).findColorMatch(1, 2, 2, 2))
+        Assert.assertEquals(2, Mastermind(0, 0, 1, 1).findColorMatch(2, 1, 2, 1))
     }
 }

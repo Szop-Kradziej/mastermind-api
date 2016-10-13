@@ -15,7 +15,13 @@ class Mastermind(val firstColor: Int,
                 fourthColor == fourthColorGuess).count { it == true }
     }
 
-    fun findColorMatch(i: Int, i1: Int, i2: Int, i3: Int): Long {
-        return 1;
+    fun findColorMatch(firstColorGuess: Int,
+                       secondColorGuess: Int,
+                       thirdColorGuess: Int,
+                       fourthColorGuess: Int): Int {
+        return listOf(firstColorGuess,
+                secondColorGuess,
+                thirdColorGuess,
+                fourthColorGuess).count { it == 1 }
     }
 }
