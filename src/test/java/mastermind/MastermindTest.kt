@@ -50,7 +50,7 @@ class MastermindTest {
                                 thirdColorGuess: Int,
                                 fourthColorGuess: Int): MatchResult {
         return Mastermind(ColorSet(firstColor, secondColor, thirdColor, fourthColor))
-                .findMatch(firstColorGuess, secondColorGuess, thirdColorGuess, fourthColorGuess)
+                .findMatch(ColorSet(firstColorGuess, secondColorGuess, thirdColorGuess, fourthColorGuess))
     }
 }
 

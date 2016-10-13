@@ -1,34 +1,22 @@
 package mastermind
 
-class Mastermind(val colorSet: ColorSet) {
+class Mastermind(val code: ColorSet) {
 
-    fun findMatch(firstColorGuess: Int,
-                  secondColorGuess: Int,
-                  thirdColorGuess: Int,
-                  fourthColorGuess: Int): MatchResult {
-        val positionMatch = findPositionMatch(firstColorGuess, secondColorGuess, thirdColorGuess, fourthColorGuess)
-        val colorMatch = findColorMatch(firstColorGuess,secondColorGuess,thirdColorGuess,fourthColorGuess)
+    fun findMatch(guess: ColorSet): MatchResult {
+        val positionMatch = findPositionMatch(guess)
+        val colorMatch = findColorMatch(guess)
         return MatchResult(positionMatch, colorMatch - positionMatch)
     }
 
-    private fun findPositionMatch(firstColorGuess: Int,
-                          secondColorGuess: Int,
-                          thirdColorGuess: Int,
-                          fourthColorGuess: Int): Int {
-        return listOf(colorSet.first == firstColorGuess,
-                colorSet.second == secondColorGuess,
-                colorSet.third == thirdColorGuess,
-                colorSet.fourth == fourthColorGuess).count { it == true }
+    private fun findPositionMatch(guess: ColorSet): Int {
+        return listOf(code.first == guess.first,
+                code.second ==  guess.second,
+                code.third == guess.third,
+                code.fourth == guess.fourth).count { it == true }
     }
 
-    private fun findColorMatch(firstColorGuess: Int,
-                       secondColorGuess: Int,
-                       thirdColorGuess: Int,
-                       fourthColorGuess: Int): Int {
-        val colors = colorSet.toList().toMutableList()
-        return listOf(firstColorGuess,
-                secondColorGuess,
-                thirdColorGuess,
-                fourthColorGuess).count { colors.remove(it) }
+    private fun findColorMatch(guess: ColorSet): Int {
+        val colors = code.toList().toMutableList()
+        return guess.toList().count { colors.remove(it) }
     }
 }
