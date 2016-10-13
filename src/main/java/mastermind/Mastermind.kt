@@ -5,7 +5,16 @@ class Mastermind(val firstColor: Int,
                  val thirdColor: Int,
                  val fourthColor: Int) {
 
-    fun findPositionMatch(firstColorGuess: Int,
+    fun findMatch(firstColorGuess: Int,
+                  secondColorGuess: Int,
+                  thirdColorGuess: Int,
+                  fourthColorGuess: Int): MatchResult {
+        val positionMatch = findPositionMatch(firstColorGuess, secondColorGuess, thirdColorGuess, fourthColorGuess)
+        val colorMatch = findColorMatch(firstColorGuess,secondColorGuess,thirdColorGuess,fourthColorGuess)
+        return MatchResult(positionMatch, colorMatch - positionMatch)
+    }
+
+    private fun findPositionMatch(firstColorGuess: Int,
                           secondColorGuess: Int,
                           thirdColorGuess: Int,
                           fourthColorGuess: Int): Int {
@@ -15,7 +24,7 @@ class Mastermind(val firstColor: Int,
                 fourthColor == fourthColorGuess).count { it == true }
     }
 
-    fun findColorMatch(firstColorGuess: Int,
+    private fun findColorMatch(firstColorGuess: Int,
                        secondColorGuess: Int,
                        thirdColorGuess: Int,
                        fourthColorGuess: Int): Int {
@@ -24,12 +33,5 @@ class Mastermind(val firstColor: Int,
                 secondColorGuess,
                 thirdColorGuess,
                 fourthColorGuess).count { colors.remove(it) }
-    }
-
-    fun findMatch(firstColorGuess: Int,
-                  secondColorGuess: Int,
-                  thirdColorGuess: Int,
-                  fourthColorGuess: Int): MatchResult {
-        return MatchResult(2, 2)
     }
 }
