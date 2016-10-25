@@ -6,14 +6,15 @@ import org.junit.Test
 class MastermindServiceTest {
 
     @Test
-    fun shouldMakeMoveReturnGameStatusMoves() {
-        Assert.assertNotNull(MastermindService().makeMove().moves)
+    fun shouldMovesContainsFirstGuess() {
+        val guess = listOf(0, 0, 0, 0)
+        Assert.assertEquals(guess, MastermindService().makeMove(guess).moves.first().guess)
     }
 }
 
 class MastermindService {
-    fun  makeMove(): GameStatus {
-        return GameStatus(emptyList())
+    fun makeMove(guess: List<Int>): GameStatus {
+        return GameStatus(listOf(Move(guess)))
     }
 
 }
