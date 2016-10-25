@@ -1,5 +1,7 @@
 package mastermind
 
+import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.whenever
 import org.junit.Assert
 import org.junit.Test
 
@@ -45,5 +47,16 @@ class MastermindServiceTest {
         service.makeMove("id", guess)
         Assert.assertEquals(1, service.makeMove("id2", guess).moves.size)
     }
-}
 
+    @Test
+    fun shouldGenerateNewRandomGameOnlyOnce() {
+        val mastermind = Mastermind(ColorSet(0, 0, 0, 1))
+        val randomGameGenerator = mock<Function0<Mastermind>>()
+        whenever(randomGameGenerator.invoke()).thenReturn(mastermind).thenThrow(RuntimeException())
+        val guess = listOf(0, 0, 0, 0)
+        val service = MastermindService(randomGameGenerator)
+
+        service.makeMove("id", guess)
+        Assert.assertEquals(2, service.makeMove("id", guess).moves.size)
+    }
+}
