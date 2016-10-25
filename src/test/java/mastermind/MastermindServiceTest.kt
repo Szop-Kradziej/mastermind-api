@@ -6,14 +6,15 @@ import org.junit.Test
 class MastermindServiceTest {
 
     @Test
-    fun shouldMakeMoveMethodExists() {
-        Assert.assertNotNull(MastermindService().makeMove())
+    fun shouldMakeMoveReturnGameStatusMoves() {
+        Assert.assertNotNull(MastermindService().makeMove().moves)
     }
 }
 
 class MastermindService {
-    fun  makeMove(): MatchResult {
-        return MatchResult(1,1)
+    fun  makeMove(): GameStatus {
+        return GameStatus(emptyList())
     }
 
 }
+
