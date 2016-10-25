@@ -15,13 +15,17 @@ class MastermindService(val randomGameGenerator: () -> Mastermind) {
         if (gamesStatuses.containsKey(id)) {
             val game = gamesStatuses.get(id)
             val moves = game!!.moves.toMutableList()
-            val match = games.get(id)!!.findMatch(ColorSet.from(guess))
-            moves.add(Move(guess, match))
+            val move = createMove(id, guess)
+            moves.add(move)
             gamesStatuses.put(id, GameStatus(moves))
         } else {
-            games.put(id, randomGameGenerator())
-            val match = games.get(id)!!.findMatch(ColorSet.from(guess))
-            gamesStatuses.put(id, GameStatus(listOf(Move(guess, match))))
+            val move = createMove(id, guess)
+            gamesStatuses.put(id, GameStatus(listOf(move)))
         }
+    }
+
+    private fun createMove(id: String, guess: List<Int>): Move {
+        val match = games.getOrPut(id, randomGameGenerator).findMatch(ColorSet.from(guess))
+        return Move(guess, match)
     }
 }
