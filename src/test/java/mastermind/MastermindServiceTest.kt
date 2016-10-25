@@ -4,12 +4,16 @@ import org.junit.Assert
 import org.junit.Test
 
 class MastermindServiceTest {
+
     @Test
-    fun shouldMastermindServiceExists() {
-        Assert.assertNotNull(MastermindService())
+    fun shouldMakeMoveMethodExists() {
+        Assert.assertNotNull(MastermindService().makeMove())
     }
 }
 
 class MastermindService {
+    fun  makeMove(): MatchResult {
+        return MatchResult(1,1)
+    }
 
 }
