@@ -2,6 +2,7 @@ package mastermind
 
 import org.junit.Assert
 import org.junit.Test
+import java.util.*
 
 class MastermindServiceTest {
 
@@ -27,13 +28,24 @@ class MastermindServiceTest {
         val match = MatchResult(2, 0)
         Assert.assertEquals(match, MastermindService({ mastermind }).makeMove(guess).moves.first().match)
     }
+
+    @Test
+    fun shouldMovesContainsBothMoves() {
+        val mastermind = Mastermind(ColorSet(0, 0, 0, 1))
+        val guess = listOf(0, 0, 0, 0)
+        val service = MastermindService({ mastermind })
+        service.makeMove(guess)
+        Assert.assertEquals(2, service.makeMove(guess).moves.size)
+    }
 }
 
 class MastermindService(val randomGameGenerator: () -> Mastermind) {
+    val moves = ArrayList<Move>()
+
     fun makeMove(guess: List<Int>): GameStatus {
         val match = randomGameGenerator().findMatch(ColorSet.from(guess))
-        return GameStatus(listOf(Move(guess, match )))
+        moves.add(Move(guess, match))
+        return GameStatus(moves)
     }
-
 }
 
