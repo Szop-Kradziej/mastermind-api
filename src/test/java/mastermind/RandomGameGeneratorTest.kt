@@ -28,9 +28,3 @@ class RandomGameGeneratorTest {
         Assert.assertEquals(Mastermind(ColorSet(0, 1, 3, 1)), RandomGameGenerator(random).invoke())
     }
 }
-
-class RandomGameGenerator(val random: () -> Int) : () -> Mastermind {
-    override fun invoke(): Mastermind {
-        return Mastermind(ColorSet(random() % 8, random() % 8, random() % 8, random() % 8))
-    }
-}
