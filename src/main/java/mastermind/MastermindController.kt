@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 class MastermindController {
 
     @RequestMapping("/mastermind/{id}")
-    fun makeMove(@PathVariable("id") id: String, @RequestParam("guess") guess: List<Int>): GameStatus {
-       throw RuntimeException()
+    fun makeMove(@PathVariable("id") id: String, @RequestParam("guess[]") guess: List<Int>): GameStatus {
+       return GameStatus(listOf(Move(guess, MatchResult(0,1))))
     }
 }

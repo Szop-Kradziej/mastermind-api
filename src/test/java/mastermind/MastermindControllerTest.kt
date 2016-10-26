@@ -25,4 +25,11 @@ class MastermindControllerTest {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isBadRequest)
     }
+
+    @Test
+    fun shouldReturnOkResponseWhenGuessParamSpecified() {
+        mockMvc.perform(MockMvcRequestBuilders.get("/mastermind/id").param("guess[]", "0,0,0,0"))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk)
+    }
 }
