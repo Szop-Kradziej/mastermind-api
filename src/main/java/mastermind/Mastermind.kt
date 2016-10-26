@@ -1,6 +1,6 @@
 package mastermind
 
-class Mastermind(val code: ColorSet) {
+data class Mastermind(val code: ColorSet) {
 
     fun findMatch(guess: ColorSet): MatchResult {
         val positionMatch = findPositionMatch(guess)
