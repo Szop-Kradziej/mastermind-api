@@ -11,7 +11,7 @@ class MastermindService(val randomGameGenerator: () -> Mastermind) {
     }
 
     private fun addMoveToProperGame(id: String, guess: List<Int>): List<Move> {
-        val oldMoves = gamesStatuses.getOrDefault(id, emptyList())
+        val oldMoves = gamesStatuses.getOrDefault(id, emptyList<Move>())
         val moves = oldMoves + createMove(id, guess)
         gamesStatuses.put(id, moves)
         return moves
