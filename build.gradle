@@ -33,6 +33,7 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('com.jayway.jsonpath:json-path')
     testCompile("com.nhaarman:mockito-kotlin:0.6.0")
+    testCompile('org.assertj:assertj-core:3.6.1')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 sourceSets {
