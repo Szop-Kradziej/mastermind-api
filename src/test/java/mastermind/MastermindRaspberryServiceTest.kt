@@ -6,22 +6,18 @@ import com.nhaarman.mockito_kotlin.verify
 import com.pi4j.io.gpio.GpioPinDigitalOutput
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.TestScheduler
-import org.assertj.core.api.Assertions
 import org.junit.Test
 import java.util.concurrent.TimeUnit
 
 class MastermindRaspberryServiceTest {
 
-    @Test
-    fun shouldCreateMastermindRaspberryService() {
-        Assertions.assertThat(MastermindRaspberryService(mock(), TestScheduler())).isNotNull()
-    }
+    val output = mock<GpioPinDigitalOutput>()
+    val scheduler = TestScheduler()
+    val service = MastermindRaspberryService(output, scheduler)
 
     @Test
     fun shouldBlinkOnGpioController() {
-        val output = mock<GpioPinDigitalOutput>()
-        val scheduler = TestScheduler()
-        MastermindRaspberryService(output, scheduler).blink()
+        service.blink()
         verify(output).high()
         scheduler.advanceTimeBy(1, TimeUnit.SECONDS)
         verify(output).low()
@@ -29,9 +25,7 @@ class MastermindRaspberryServiceTest {
 
     @Test
     fun shouldTurnOnGpioController() {
-        val output = mock<GpioPinDigitalOutput>()
-        val scheduler = TestScheduler()
-        MastermindRaspberryService(output, scheduler).blink()
+        service.blink()
         verify(output).high()
         verify(output, never()).low()
     }
