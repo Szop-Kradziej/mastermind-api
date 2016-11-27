@@ -2,6 +2,8 @@ package mastermind
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.context.annotation.Bean
+import java.util.*
 
 @SpringBootApplication
 open class Application {
@@ -10,5 +12,12 @@ open class Application {
         @JvmStatic fun main(args: Array<String>) {
             SpringApplication.run(Application::class.java, *args)
         }
+    }
+
+    @Bean
+    open fun createMastermindService(): MastermindService {
+        val random = { Random().nextInt() }
+        val randomGameGenerator = RandomGameGenerator(random)
+        return MastermindService(randomGameGenerator)
     }
 }
