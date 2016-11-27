@@ -8,6 +8,7 @@ import io.reactivex.Scheduler
 import io.reactivex.schedulers.TestScheduler
 import org.junit.Test
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicInteger
 
 class MastermindRaspberryServiceTest {
 
@@ -29,13 +30,44 @@ class MastermindRaspberryServiceTest {
         verify(output).high()
         verify(output, never()).low()
     }
+
+    @Test
+    fun shouldQueueBlinks() {
+        service.blink()
+        service.blink()
+        verify(output).high()
+    }
 }
 
-class MastermindRaspberryService(private val output: GpioPinDigitalOutput, private val scheduler: Scheduler) {
+class MastermindRaspberryService(
+        private val output: GpioPinDigitalOutput,
+        private val scheduler: Scheduler) {
+
+    val queue = AtomicInteger(0)
+
     fun blink() {
+        if (queue.getAndIncrement() == 0) {
+            start()
+        }
+    }
+
+    private fun start() {
         output.high()
-        scheduler.scheduleDirect({
+        wait {
             output.low()
-        },1, TimeUnit.SECONDS)
+            wait {
+                checkQueueAndRepeat()
+            }
+        }
+    }
+
+    private fun wait(block: () -> Unit) {
+        scheduler.scheduleDirect(block, 1, TimeUnit.SECONDS)
+    }
+
+    private fun checkQueueAndRepeat() {
+        if (queue.decrementAndGet() > 0) {
+            start()
+        }
     }
 }
